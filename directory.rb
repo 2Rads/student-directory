@@ -1,36 +1,61 @@
-students = []
+@students = []
 
-def get_students(students)
-  puts "enter names of students in november cohort\nType end to exit"
+def get_students
+  puts "\nEnter names of students in november cohort\nType end to exit"
   input = gets.chomp
 
   while input != "end"
     
-    students << {name: input, cohort: :november}
-    puts "There are now #{students.length} students."
+    @students << {name: input, cohort: :november}
+    puts "There are now #{@students.length} students."
     input = gets.chomp
 
   end
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "--------------------------------"
+  puts "\nThe students of Villains Academy"
+  puts "--------------------------------\n"
 end
 
-def print_students(students)
+def print_students
   count = 1
-  students.each do |student|
+  @students.each do |student|
     puts "#{count}. #{student[:name]}, #{student[:cohort]} cohort"
     count+=1
   end
 end
 
-def print_studentCount(students)
-  puts "There are #{students.length} students."
+def print_studentCount
+  puts "There are #{@students.length} students."
 end
 
-print_header
-get_students(students)
-print_students(students)
-print_studentCount(students)
+def print_menu
+  puts "\n1. Add new student"
+  puts "2. Show student"
+  puts "3. Exit"
+end
+
+def get_Option
+  choice = gets.chomp
+  if choice == "1"
+    get_students
+  elsif choice == "2"
+    print_students
+    print_studentCount
+  elsif choice == "3"
+    exit
+  else 
+    puts "Thats's not a valid option"
+  end
+end
+
+def main
+  print_header
+  while true
+    print_menu
+    get_Option
+  end
+end
+
+main
