@@ -33,7 +33,9 @@ end
 def print_menu
   puts "\n1. Add new student"
   puts "2. Show student"
-  puts "3. Exit"
+  puts "3. Save list as CSV"
+  puts "4. load CSV"
+  puts "5. Exit"
 end
 
 def get_Option
@@ -44,13 +46,35 @@ def get_Option
     print_students
     print_studentCount
   elsif choice == "3"
+    save_csv
+  elsif choice == "4"
+    load_students
+  elsif choice == "5"
     exit
   else 
     puts "Thats's not a valid option"
   end
 end
 
+def load_students
+  file = File.open("students.numbers", "r")
+  file.readlines.each do |line|
+    name, cohort = line.chomp.split(',')
+    @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+end
+
+def save_csv
+  file = File.open("students.numbers", "w")
+  @students.each{ |student|
+    file.puts " #{student[:name]} , #{student[:cohort]} "
+  }
+  file.close
+end
+
 def main
+  load_students
   print_header
   while true
     print_menu
