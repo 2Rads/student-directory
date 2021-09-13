@@ -19,8 +19,10 @@ def print_header
 end
 
 def print_students(students)
+  count = 1
   students.each do |student|
-    puts "#{student[:name]}, #{student[:cohort]} cohort"
+    puts "#{count}. #{student[:name]}, #{student[:cohort]} cohort"
+    count+=1
   end
 end
 
