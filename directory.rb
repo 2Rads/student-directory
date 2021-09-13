@@ -1,16 +1,17 @@
-students = [
-  {name: "Dr. Hannibal Lecter", cohort: :november},
-  {name: "Darth Vader", cohort: :november},
-  {name: "Nurse Ratched", cohort: :november},
-  {name: "Michael Corleone", cohort: :november},
-  {name: "Alex DeLarge", cohort: :november},
-  {name: "The Wicked Witch of the West", cohort: :november},
-  {name: "Terminator", cohort: :november},
-  {name: "Freddy Krueger", cohort: :november},
-  {name: "The Joker", cohort: :november},
-  {name: "Joffrey Baratheon", cohort: :november},
-  {name: "Norman Bates", cohort: :november}
-]
+students = []
+
+def get_students(students)
+  puts "enter names of students in november cohort\nType end to exit"
+  input = gets.chomp
+
+  while input != "end"
+    
+    students << {name: input, cohort: :november}
+    puts "There are now #{students.length} students."
+    input = gets.chomp
+
+  end
+end
 
 def print_header
   puts "The students of Villains Academy"
@@ -19,7 +20,7 @@ end
 
 def print_students(students)
   students.each do |student|
-    puts "#{student[:name]} #{student[:cohort]}"
+    puts "#{student[:name]}, #{student[:cohort]} cohort"
   end
 end
 
@@ -28,5 +29,6 @@ def print_studentCount(students)
 end
 
 print_header
+get_students(students)
 print_students(students)
 print_studentCount(students)
